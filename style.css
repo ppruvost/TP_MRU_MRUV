@@ -122,14 +122,36 @@ input[type="radio"] {
   font-size: 1em;
   line-height: 1.4;
   border: 1px solid #d0e4d0;
+  background: #f5faf5;
 }
 
 .success {
   color: #0c7a00;
   background: #e3f7e1;
   border: 1px solid #b6e2b5;
+  padding: 6px 10px;
+  border-radius: 5px;
 }
 
 .fail {
   color: #bc2929;
-  background: #fde
+  background: #fdeaea;
+  border: 1px solid #f5bcbc;
+  padding: 6px 10px;
+  border-radius: 5px;
+}
+
+/* ===============================
+   RESPONSIVE
+=============================== */
+@media (max-width: 640px) {
+  .container {
+    padding: 24px 16px;
+    margin: 20px 10px;
+  }
+
+  .button {
+    width: 100%;
+    text-align: center;
+  }
+}
