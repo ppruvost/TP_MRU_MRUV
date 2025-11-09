@@ -1,11 +1,4 @@
 // =============================
-// Initialisation d'EmailJS
-// =============================
-(function() {
-  emailjs.init("TJHX0tkW1CCz7lv7a"); // clé publique EmailJS
-})();
-
-// =============================
 // Variables globales
 // =============================
 let user = {
@@ -218,7 +211,7 @@ function validateAnswer() {
 })();
 
 // =============================
-// Fin du quiz + Envoi du mail
+// Fin du quiz + Envoi au projet Courriel
 // =============================
 function endQuiz() {
   document.getElementById("quiz").innerHTML = "<strong>Quiz terminé !</strong>";
@@ -226,22 +219,30 @@ function endQuiz() {
   document.getElementById("explication").innerHTML = "";
 
   // Préparation des données à envoyer
-  const emailParams = {
+  const payload = {
     nom: user.nom,
     prenom: user.prenom,
-    score: `${score} / ${questions.length}`,
-    email: "patrick.pruvost50@gmail.com" // destinataire fixe
+    score: score,
+    total: questions.length
   };
 
-  // Envoi via EmailJS
-  emailjs
-    .send("service_cgh817y", "template_ly7s41e", emailParams)
-    .then(() => {
-      alert("✅ Résultats envoyés par e-mail !");
+  // Appel HTTP POST vers ton projet Courriel
+  fetch("https://courriel.onrender.com/send", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  })
+    .then(response => {
+      if (response.ok) {
+        alert("✅ Résultats envoyés au projet Courriel !");
+      } else {
+        alert("❌ Erreur lors de l'envoi des résultats : " + response.statusText);
+      }
     })
-    .catch((error) => {
-      console.error("❌ Erreur EmailJS :", error);
-      alert("Erreur lors de l’envoi : " + JSON.stringify(error));
+    .catch(error => {
+      console.error("Erreur réseau :", error);
+      alert("❌ Erreur réseau lors de l'envoi des résultats !");
     });
 }
-
