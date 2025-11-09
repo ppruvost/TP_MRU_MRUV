@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quiz MRU / MRUV - Seconde Pro</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -30,21 +31,14 @@
          ========================= -->
     <div id="quiz" style="display:none;"></div>
 
-    <!-- Bouton de validation (injecté dans JS ou ici si souhaité) -->
-    <button class="button" id="submit" style="display:none;">Soumettre</button>
-
     <!-- Zone d'affichage score / explication -->
     <div class="score" id="score"></div>
     <div class="explication" id="explication"></div>
   </div>
 
   <!-- =========================
-       SCRIPTS
+       SCRIPT PRINCIPAL
        ========================= -->
-  <!-- EmailJS -->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-  <!-- Script principal du quiz -->
   <script src="quiz.js"></script>
 </body>
 </html>
