@@ -1,64 +1,31 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>TP MRU / MRUV — Visualisation</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-<style>
-body{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial; color:#3a2d27; background:#E7DFD3; padding:18px}
-header{display:flex;align-items:center;gap:12px}
-h1{margin:0;font-size:1.3rem;color:#3a2d27}
-.card{background:white;border-radius:10px;padding:14px;box-shadow:0 3px 10px rgba(0,0,0,0.06);margin-top:12px}
-.row{display:flex;gap:12px;flex-wrap:wrap}
-canvas{max-width:100%;height:320px}
-pre{background:#f6f3f0;padding:8px;border-radius:6px;overflow:auto}
-label{font-weight:600}
-.small{font-size:0.9rem;color:#60524b}
-footer{margin-top:18px;color:#60524b;font-size:0.85rem}
-</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload TXT - MRU & MRUV</title>
 </head>
 <body>
-<header>
-<div style="width:56px;height:56px;border-radius:10px;background:#80665b;display:flex;align-items:center;justify-content:center;color:white;font-weight:bold">JD</div>
-<div>
-<h1>TP MRU & MRUV — Visualisation (HTML + JS)</h1>
-<div class="small">Chargez depuis les fichiers texte du dépôt — prêt pour GitHub Pages</div>
-</div>
-</header>
+    <h1>Chargement des fichiers MRU et MRUV</h1>
 
+    <div>
+        <label for="fileMRU">Fichier donnees_MRU.txt :</label>
+        <input type="file" id="fileMRU" accept=".txt" />
+    </div>
 
-<div class="card">
-<div class="row">
-<div style="flex:1 1 480px">
-<label>Graphique MRU (position vs temps)</label>
-<canvas id="chart-mru"></canvas>
-</div>
-<div style="flex:1 1 480px">
-<label>Graphique MRUV (position vs temps)</label>
-<canvas id="chart-mruv"></canvas>
-</div>
-</div>
+    <div>
+        <label for="fileMRUV">Fichier donnees_MRUV.txt :</label>
+        <input type="file" id="fileMRUV" accept=".txt" />
+    </div>
 
+    <button id="loadBtn">Charger les fichiers</button>
 
-<div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
-<div style="flex:1 1 360px">
-<label>Équation MRU</label>
-<pre id="eq-mru">Chargement...</pre>
-</div>
-<div style="flex:1 1 360px">
-<label>Équation MRUV</label>
-<pre id="eq-mruv">Chargement...</pre>
-</div>
-</div>
+    <h2>Contenu MRU :</h2>
+    <pre id="outputMRU"></pre>
 
+    <h2>Contenu MRUV :</h2>
+    <pre id="outputMRUV"></pre>
 
-<div style="margin-top:12px;display:flex;gap:8px;align-items:center">
-<button id="reloadBtn">Recharger données</button>
-<button id="downloadCsv">Exporter CSV (résultats)</button>
-<div class="small">Les fichiers `donnees_MRU.txt` et `donnees_MRUV.txt` doivent être présents à la racine du repo.</div>
-</div>
-</div>
-
-
+    <script src="script.js"></script>
+</body>
 </html>
