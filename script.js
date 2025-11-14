@@ -1,30 +1,32 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const loadBtn = document.getElementById("loadBtn");
 
-    loadBtn.addEventListener("click", () => {
-        const fileMRU = document.getElementById("fileMRU").files[0];
-        const fileMRUV = document.getElementById("fileMRUV").files[0];
-
-        if (!fileMRU || !fileMRUV) {
-            alert("Veuillez sélectionner les deux fichiers TXT.");
-            return;
+    document.getElementById("fileMRU").addEventListener("change", function () {
+        const file = this.files[0];
+        if (file) {
+            readFile(file, "outputMRU");
         }
-
-        readFile(fileMRU, "outputMRU");
-        readFile(fileMRUV, "outputMRUV");
     });
+
+    document.getElementById("fileMRUV").addEventListener("change", function () {
+        const file = this.files[0];
+        if (file) {
+            readFile(file, "outputMRUV");
+        }
+    });
+
 });
 
 function readFile(file, outputId) {
     const reader = new FileReader();
 
-    reader.onload = (event) => {
-        document.getElementById(outputId).textContent = event.target.result;
+    reader.onload = e => {
+        document.getElementById(outputId).textContent = e.target.result;
     };
 
     reader.onerror = () => {
-        document.getElementById(outputId).textContent = "Erreur lors de la lecture du fichier.";
+        document.getElementById(outputId).textContent =
+            "Erreur lors de la lecture du fichier : " + file.name;
     };
 
-    reader.readAsText(file);
+    reader.readAsText(file, "UTF-8");
 }
